@@ -11,7 +11,11 @@
     ],
   },
   "files": [
+    { "kind": "folder", "path": "view", "target-membership": [ "Plantapp" ] },
+    { "kind": "folder", "path": "viewModel", "target-membership": [ "Plantapp" ] },
+    { "kind": "folder", "path": "model", "target-membership": [ "Plantapp" ] },
     { "kind": "folder", "path": "Plantapp", "target-membership": [ "Plantapp" ] },
+    { "path": "SetReminderView.swift", "target-membership": [ "Plantapp/compile-sources" ] },
     {
       "kind": "group",
       "name": "Products",
