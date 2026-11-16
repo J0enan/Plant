@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SetReminderView: View {
     @Environment(\.dismiss) private var dismiss
-    let viewModel: PlantViewModel
+    let viewModel: PlantListViewModel
     
 
     var body: some View {
@@ -17,3 +17,4 @@ struct SetReminderView: View {
         }
     }
 }
+

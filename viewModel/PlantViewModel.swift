@@ -1,7 +1,8 @@
 
 import SwiftUI
 import Observation
-
+@StateObject private var viewModel = PlantViewModel()
+@State private var showSetReminder = false
 
 
 @Observable
