@@ -1,21 +1,39 @@
 import Foundation
-import Combine
-import SwiftUI
+import Observation
 
-// A simple list view model to back ContentView and SetReminderView
-// Holds a list of Plant items and basic operations.
-class PlantListViewModel: ObservableObject {
-    @Published var plants: [Plant] = []
+@Observable
+class PlantListViewModel {
+    var plants: [Plant] = []
+    var hasEverAddedPlant = false
+    
 
-    init(plants: [Plant] = []) {
-        self.plants = plants
+    // MARK: - Computed
+    var wateredCount: Int {
+        plants.filter { $0.isWatered }.count
     }
 
-    func add(_ plant: Plant) {
+    var allDone: Bool {
+        !plants.isEmpty && wateredCount == plants.count
+    }
+
+    var progress: Double {
+        plants.isEmpty ? 0 : Double(wateredCount) / Double(plants.count)
+    }
+
+    // MARK: - Actions
+    func addPlant(_ plant: Plant) {
         plants.append(plant)
+        hasEverAddedPlant = true   
+        
     }
 
-    func remove(_ plant: Plant) {
+    func deletePlant(_ plant: Plant) {
         plants.removeAll { $0.id == plant.id }
     }
+
+    func toggleWatered(_ plant: Plant) {
+        guard let index = plants.firstIndex(where: { $0.id == plant.id }) else { return }
+        plants[index].isWatered.toggle()
+    }
+    
 }
